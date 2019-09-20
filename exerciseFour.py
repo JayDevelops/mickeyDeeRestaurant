@@ -44,28 +44,37 @@ cheeseBool = False
 cheesePrice = 0
 #Checks whether the user wants cheese
 if cheeseInput == "yes" or cheeseInput == "Yes" or cheeseInput == "y" or cheeseInput == "Y":
-    print("Okay, you added cheese to the", chosenBurger, "would you like to make it a combo?\n")
+    print("Okay, you added cheese to the", chosenBurger, "would you like to make it a combo?\n", "Type 'Yes' or 'No'\n")
     cheeseBool = True
     cheesePrice = 1.23
-else:
-    print("Okay, cheese isn't your think for the", chosenBurger, "would you like to make it a combo?\n", "Type 'Yes' or 'No'")
+elif cheeseInput == "no" or cheeseInput == "No" or cheeseInput == "n" or cheeseInput == "N":
+    print("Okay, cheese isn't your thing for the", chosenBurger, "would you like to make it a combo?\n", "Type 'Yes' or 'No'\n")
     cheeseBool = False
+    cheesePrice = 0
+else:
+    print("Sir or ma'am, you didn't print a valid cheese option. We will take it as a 'no'...\n", "Now, would you like to make it a combo?\n", "Type 'Yes' or 'No'\n")
+    cheeseBool = False
+    cheesePrice = 0
 
 
 
 
-#Input whether they want a combo or not
+
+# Input whether they want a combo or not
 firstComboInput = input()
 comboArray = ["small", "medium", "large", "noCombo"]
 comboPriceArray = [2.63, 3.76, 4.89, 0]
 
-#These are being added to the coressponding arrays in the if and else wayyy below
-combo = " "
-comboPrice = 0
+# These are being added to the coressponding arrays in the if and else wayyy below
+combo = " " # Passing only the string in comboArray
+comboPrice = 0 # Passing only the price in the comboPriceArray
 
-#First ask whether they do want a combo
+# First ask whether they do want a combo
 if firstComboInput == "y" or firstComboInput == "yes" or firstComboInput == "Yes" or firstComboInput == "Y":
-    print("Okay, what kind of combo would you like?\n", "Would you like a small, medium, or large?\n")
+    print("\nOkay, what kind of combo would you like?\n", "Would you like a small, medium, or large?\n")
+    print("Small combo costs", comboPriceArray[0], "\n")
+    print("Medium combo costs", comboPriceArray[1], "\n")
+    print("Large combo costs", comboPriceArray[2], "\n")
     secondComboInput = input()
     #Now, ask them whether they want a small, medium, or large
     if secondComboInput == "small" or secondComboInput == "Small" or secondComboInput == "S" or secondComboInput == "s":
@@ -82,8 +91,12 @@ if firstComboInput == "y" or firstComboInput == "yes" or firstComboInput == "Yes
         comboPrice = comboPriceArray[2]
     else:
         print("Sir you needed to write a valid combo, please start your order over\n")
-else:
+elif firstComboInput == "n" or firstComboInput == "N" or firstComboInput == "no" or firstComboInput == "No" or firstComboInput == "NO":
     print("Okay, you'll only get the", chosenBurger, "without the combo")
+    combo = comboArray[3]
+    comboPrice = comboPriceArray[3]
+else:
+    print("Sir or ma'am, you're going to have to run this program again as you didn't specify a valid combo option")
     combo = comboArray[3]
     comboPrice = comboPriceArray[3]
 
@@ -98,57 +111,60 @@ mcChonkSum = mcDict["3. McChonk"] + cheesePrice + comboPrice
 
 
 #Adding the numbers below now
-if chosenBurgerIndex == 1 and combo == comboArray[0]:
-    currentPrice = mcStandardSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 2  and combo == comboArray[0]:
-    currentPrice = mcGordoSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 3 and combo == comboArray[0]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 1 and combo == comboArray[1]:
-    currentPrice = mcStandardSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 2 and combo == comboArray[1]:
-    currentPrice = mcGordoSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 3 and combo == comboArray[1]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 1  and combo == comboArray[2]:
-    currentPrice = mcStandardSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 2 and combo == comboArray[2]:
-    currentPrice = mcGordoSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 3 and combo == comboArray[2]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 1  and combo == comboArray[3]:
-    currentPrice = mcStandardSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 2 and combo == comboArray[3]:
-    currentPrice = mcGordoSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 3 and combo == comboArray[3]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 1 and combo == comboArray[4]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 2 and combo == comboArray[4]:
-    currentPrice = mcGordoSum
-    totalPrice = currentPrice
-elif chosenBurgerIndex == 3 and combo == comboArray[4]:
-    currentPrice = mcChonkSum
-    totalPrice = currentPrice
+#This huge if, else if statement chooses any of the selected burgers and runs the appropriate sum
+if (chosenBurgerIndex == 1 and combo == comboArray[0]) or (chosenBurgerIndex == 1 and combo == comboArray[1]) or (chosenBurgerIndex == 1 and combo == comboArray[2]) or (chosenBurgerIndex == 1 and combo == comboArray[3]):
+    totalPrice = mcStandardSum
+elif (chosenBurgerIndex == 2 and combo == comboArray[0]) or (chosenBurgerIndex == 2 and combo == comboArray[1]) or (chosenBurgerIndex == 2 and combo == comboArray[2]) or (chosenBurgerIndex == 2 and combo == comboArray[3]):
+    totalPrice = mcGordoSum
+elif (chosenBurgerIndex == 3 and combo == comboArray[0]) or (chosenBurgerIndex == 3 and combo == comboArray[1]) or (chosenBurgerIndex == 3 and combo == comboArray[2]) or (chosenBurgerIndex == 3 and combo == comboArray[3]):
+    totalPrice = mcChonkSum
 else:
-    print("code is broken")
+    print("Error")
+
+# if chosenBurgerIndex == 1 and combo == comboArray[0]:
+#     totalPrice = mcStandardSum
+# elif chosenBurgerIndex == 2  and combo == comboArray[0]:
+#     totalPrice = mcGordoSum
+# elif chosenBurgerIndex == 3 and combo == comboArray[0]:
+#     totalPrice = mcChonkSum
+# elif chosenBurgerIndex == 1 and combo == comboArray[1]:
+#     totalPrice = mcStandardSum
+# elif chosenBurgerIndex == 2 and combo == comboArray[1]:
+#     totalPrice = mcGordoSum
+# elif chosenBurgerIndex == 3 and combo == comboArray[1]:
+#     currentPrice = mcChonkSum
+# elif chosenBurgerIndex == 1  and combo == comboArray[2]:
+#     totalPrice = mcStandardSum
+# elif chosenBurgerIndex == 2 and combo == comboArray[2]:
+#     currentPrice = mcGordoSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 3 and combo == comboArray[2]:
+#     currentPrice = mcChonkSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 1  and combo == comboArray[3]:
+#     currentPrice = mcStandardSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 2 and combo == comboArray[3]:
+#     currentPrice = mcGordoSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 3 and combo == comboArray[3]:
+#     currentPrice = mcChonkSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 1 and combo == comboArray[4]:
+#     currentPrice = mcChonkSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 2 and combo == comboArray[4]:
+#     currentPrice = mcGordoSum
+#     totalPrice = currentPrice
+# elif chosenBurgerIndex == 3 and combo == comboArray[4]:
+#     currentPrice = mcChonkSum
+#     totalPrice = currentPrice
+# else:
+#     print("code is broken")
 
 
 #Now, calculate the taxes
-taxedTotalPrice = (totalPrice * 0.89) + totalPrice
+taxedTotalPrice = (totalPrice / 0.89) + totalPrice
 
 #The final price is set in stone now
 finalPrice = round(taxedTotalPrice, 2)
@@ -157,9 +173,12 @@ finalPrice = round(taxedTotalPrice, 2)
 #Let's make a receipt
 def create_receipt():
     print("\nYou ordered the", chosenBurger, combo, "and your final price is below\n")
-    print("\t\t\t ", "$", "Final Price:" finalPrice)
+    print("\t\t\t ", "Final Price: ", "$", finalPrice)
     print("Thank you for buying food from a ripped off McDonald's!")
     print("--------------------------------------------")
 
-#now, let's call the receipt
-create_receipt()
+#now, let's call the receipt only when the totalPrice doesn't equal zero
+if finalPrice == 0:
+    print("Run the program again as previously mentioned")
+else:
+    create_receipt()
